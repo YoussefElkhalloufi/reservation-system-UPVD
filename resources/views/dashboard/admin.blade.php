@@ -63,7 +63,8 @@
                                 – {{ $res->nbMateriels }} matériel(s)
                             @endif
                         </td>
-                        <td>{{Carbon::parse($res->dateReservation)->format('D, d M Y H:i')}}</td>
+                        <td>{{Carbon::parse($res->dateReservation)
+                            ->translatedformat('l, d M Y H:i')}}</td>
                     </tr>
                 @empty
                     <tr>
