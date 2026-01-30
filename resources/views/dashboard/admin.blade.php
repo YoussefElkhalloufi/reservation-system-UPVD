@@ -1,4 +1,6 @@
-@php use Carbon\Carbon; @endphp
+@php use Carbon\Carbon;
+use \Illuminate\Support\Str;
+@endphp
 @extends('layouts.dashboard')
 
 @section('title', 'Dashboard Admin')
@@ -56,8 +58,8 @@
                         <td>{{ $res->nomComplet }}</td>
                         <td>{{ $res->role }}</td>
                         <td>
-                            @if($res->codeSalle != '-')
-                                Salle {{ $res->codeSalle }}
+                            @if($res->codeSalle !== '—')
+                               Salle {{ $res->codeSalle }}
                             @endif
                             @if($res->nbMateriels > 0)
                                 – {{ $res->nbMateriels }} matériel(s)
@@ -68,7 +70,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="3" style="text-align:center;">Aucune activité récente</td>
+                        <td colspan="3" style="text-align:center; font-weight: bold;">Aucune activité récente</td>
                     </tr>
                 @endforelse
                 </tbody>
