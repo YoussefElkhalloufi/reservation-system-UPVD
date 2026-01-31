@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 class UtilisateurRepository
 {
-    /**
-     * Retourne un utilisateur (ligne) à partir de l'email, ou null si introuvable.
-     */
+
     public function findByIdUtilisateur(string $idUtilisateur): ?object
     {
         //retourne un seul resultat (objet ou NULL)
@@ -16,6 +14,13 @@ class UtilisateurRepository
             "SELECT * FROM utilisateur WHERE idUtilisateur = ? and actif = true LIMIT 1",
             [$idUtilisateur]
         );
+    }
+
+    public function getUtilisateurs(): ?array{
+        return DB::select("
+        SELECT idUtilisateur, nom, prenom, adresseMail, role, actif
+            FROM utilisateur
+            ORDER BY idUtilisateur");
     }
 
 }

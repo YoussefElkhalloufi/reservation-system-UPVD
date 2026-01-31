@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\DashboardRepository;
+use App\Repositories\UtilisateurRepository;
 use Illuminate\Http\Request;
 
 class AdminDashboardController extends Controller
@@ -14,6 +15,15 @@ class AdminDashboardController extends Controller
         $stats = $dashboardRepo->getAdminStats();
         $recentReservations = $dashboardRepo->getRecentReservations();
 
-        return view('dashboard.admin', compact('user', 'stats', 'recentReservations'));
+        return view('dashboard.admin.index', compact('user', 'stats', 'recentReservations'));
+    }
+
+
+    public function utilisateurs(UtilisateurRepository $userRepo){
+        $user = session('user');
+
+        $users = $userRepo->getUtilisateurs();
+
+        return view('dashboard.admin.utilisateurs', compact('user', 'users'));
     }
 }

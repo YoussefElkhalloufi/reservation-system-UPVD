@@ -2,7 +2,6 @@
 use \Illuminate\Support\Str;
 @endphp
 @extends('layouts.dashboard')
-
 @section('title', 'Dashboard Admin')
 
 @section('content')
@@ -59,7 +58,7 @@ use \Illuminate\Support\Str;
                         <td>{{ $res->role }}</td>
                         <td>
                             @if($res->codeSalle !== '—')
-                               Salle {{ $res->codeSalle }}
+                                Salle {{ $res->codeSalle }}
                             @endif
                             @if($res->nbMateriels > 0)
                                 – {{ $res->nbMateriels }} matériel(s)

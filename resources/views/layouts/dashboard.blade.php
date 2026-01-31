@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@yield('title', 'Dashboard')</title>
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/dashboard.css') }}">
+    @yield('styles')
+    @yield('scripts')
 </head>
 <body>
 <div class="dash">
@@ -18,8 +20,10 @@
         </div>
 
         <nav class="menu">
-            <a class="item active" href="#"><span>🏠</span> Tableau de bord</a>
-            <a class="item" href="#"><span>👤</span> Utilisateurs</a>
+            <a class="item {{ request()->is('dashboard/admin') ? 'active' : ''}}"
+               href="/dashboard/admin"><span>🏠</span> Tableau de bord</a>
+            <a class="item {{ request()->is('dashboard/admin/utilisateurs') ? 'active' : '' }}"
+               href="/dashboard/admin/utilisateurs"><span>👤</span> Utilisateurs</a>
             <a class="item" href="#"><span>🏫</span> Gestion des salles</a>
             <a class="item" href="#"><span>📅</span> Réservations</a>
             <a class="item" href="#"><span>📊</span> Rapports</a>

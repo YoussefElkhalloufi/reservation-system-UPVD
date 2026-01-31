@@ -21,7 +21,6 @@ Route::middleware('auth.session')->group(function () {
             'etudiant' => redirect('/dashboard/etudiant'),
             'enseignant' => redirect('/dashboard/enseignant'),
             'admin' => redirect('/dashboard/admin'),
-            default => abort(403, 'roleUtilisateur invalide'),
         };
     });
 
@@ -37,6 +36,9 @@ Route::middleware('auth.session')->group(function () {
 
     Route::get('/dashboard/admin', [AdminDashboardController::class, 'index'])
         ->middleware('role:admin');
+
+    Route::get('/dashboard/admin/utilisateurs',[AdminDashboardController::class, 'utilisateurs']
+    )->middleware('role:admin');
 });
 
 
