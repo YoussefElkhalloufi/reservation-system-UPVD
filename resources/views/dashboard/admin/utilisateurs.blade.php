@@ -10,8 +10,9 @@
         document.addEventListener('DOMContentLoaded', () => {
 
             const select = document.getElementById('roleFilter');
-            const searchInput = document.getElementById('searchInput');
             const rows = document.querySelectorAll('.user-row');
+
+            const searchInput = document.getElementById('searchInput');
 
             function applyRoleFilter() {
                 const selectedRole = select.value; // "" / admin / etudiant / enseignant
@@ -45,27 +46,22 @@
 
             // 2) Recherche
             searchInput.addEventListener('input', () => {
-                const query = searchInput.value.toLowerCase().trim();
-
-                // ✅ si vide => retour à l’état "filtre rôle"
+                const query = searchInput.value.toLowerCase();
+                // si vide => retour à l’état "filtre rôle"
                 if (query === "") {
                     applyRoleFilter();
                     return;
                 }
-
                 // sinon : on repart de l’état rôle, puis on filtre par texte
                 applyRoleFilter();
-
                 rows.forEach(row => {
                     if (row.style.display !== "none") {
-                        const text = row.innerText.toLowerCase();
+                        const text = (row.dataset.search || "");
                         if (!text.includes(query)) row.style.display = "none";
                     }
                 });
             });
 
-            // état initial
-            applyRoleFilter();
         });
     </script>
 @endsection
@@ -108,6 +104,7 @@
                         <th>Nom Prénom</th>
                         <th>Email</th>
                         <th>Rôle</th>
+                        <th>Téléphone</th>
                         <th>Statut</th>
                         <th>Actions</th>
                     </tr>
@@ -116,11 +113,14 @@
                     <tbody>
                     @forelse($users as $u)
                         @php
-                            $nomComplet = trim($u->prenom.' '.$u->nom);
+                            $nomComplet = trim($u->nom.' '.$u->prenom);
                             $statutTxt = $u->actif ? 'actif' : 'inactif';
 
                             // Texte "indexé" pour la recherche (tout en minuscule)
-                            $searchText = strtolower($u->idUtilisateur.' '.$nomComplet.' '.$u->adresseMail.' '.$u->role.' '.$statutTxt);
+                            $searchText = strtolower(
+                                $u->idUtilisateur.' '.$nomComplet.' '.$u->adresseMail.' '.$u->role.' '.$u->telephone
+                                .' '.$statutTxt
+                            );
                         @endphp
 
                         <tr class="user-row" data-role="{{ $u->role }}" data-search="{{ $searchText }}">
@@ -128,6 +128,7 @@
                             <td class="name">{{strtoupper($u->nom) }} {{ $u->prenom }}</td>
                             <td class="muted">{{ $u->adresseMail }}</td>
                             <td>{{ ucfirst($u->role) }}</td>
+                            <td class="muted">{{$u->telephone}}</td>
                             <td>
                                 @if($u->actif)
                                     <span class="badge badge-green">Actif</span>
@@ -136,7 +137,7 @@
                                 @endif
                             </td>
                             <td>
-                                <button type="button" class="btn-edit">✎ Éditer</button>
+                                <button type="button" class="btn-edit">Éditer</button>
                             </td>
                         </tr>
                     @empty

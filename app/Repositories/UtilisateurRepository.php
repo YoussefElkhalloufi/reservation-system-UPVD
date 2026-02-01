@@ -16,9 +16,9 @@ class UtilisateurRepository
         );
     }
 
-    public function getUtilisateurs(): ?array{
+    public function getUtilisateurs(): array{
         return DB::select("
-        SELECT idUtilisateur, nom, prenom, adresseMail, role, actif
+        SELECT idUtilisateur, nom, prenom, adresseMail, role, actif, telephone
             FROM utilisateur
             ORDER BY idUtilisateur");
     }

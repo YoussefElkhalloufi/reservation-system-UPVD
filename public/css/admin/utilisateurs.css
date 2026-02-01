@@ -109,6 +109,7 @@
 
 .name{
     font-weight:600;
+    font-size: 16px;
 }
 
 .muted{
@@ -143,6 +144,9 @@
     cursor:pointer;
 }
 
+.btn-edit:hover {
+    background: #0051d5;
+}
 /* Empty */
 .empty{
     text-align:center;
