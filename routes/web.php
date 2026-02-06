@@ -39,6 +39,10 @@ Route::middleware('auth.session')->group(function () {
 
     Route::get('/dashboard/admin/utilisateurs',[AdminDashboardController::class, 'utilisateurs']
     )->middleware('role:admin');
+
+    Route::post('/dashboard/admin/utilisateurs', [AdminDashboardController::class, 'store'])
+        ->name('admin.utilisateurs.store')->middleware('role:admin');
+    //TODO: middleware
 });
 
 

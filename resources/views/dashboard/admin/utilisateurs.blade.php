@@ -74,7 +74,9 @@
             <h1 class="page-title">Gestion des utilisateurs</h1>
 
             <div class="toolbar">
-                <button type="button" class="btn-primary">
+                <button type="button" class="btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#addUserModal">
                     <span class="icon">+</span>
                     Ajouter un utilisateur
                 </button>
@@ -150,5 +152,89 @@
             </div>
         </div>
 
+        <div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Ajouter un utilisateur</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                    </div>
+
+                    <form method="POST" action="{{ route('admin.utilisateurs.store') }}">
+                        @csrf
+
+                        <div class="modal-body">
+
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Nom</label>
+                                    <input name="nom" class="form-control" required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Prénom</label>
+                                    <input name="prenom" class="form-control" required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Email</label>
+                                    <input name="email" type="email" class="form-control" required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Téléphone</label>
+                                    <input name="telephone" class="form-control">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Rôle</label>
+                                    <select name="role" class="form-select" required>
+                                        <option value="etudiant">Étudiant</option>
+                                        <option value="enseignant">Enseignant</option>
+                                        <option value="admin">Admin</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Statut</label>
+                                    <select name="statut" class="form-select" required>
+                                        <option value="actif">Actif</option>
+                                        <option value="inactif">Inactif</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Mot de passe</label>
+                                    <input name="password" type="password" class="form-control" required minlength="8">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Confirmer</label>
+                                    <input name="password_confirmation" type="password" class="form-control" required minlength="8">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        </div>
+                    </form>
+
+
+                    @if ($errors->any())
+                        <script>
+                            alert(@json($errors->first()));
+                            document.addEventListener('DOMContentLoaded', () => {
+                                new bootstrap.Modal(document.getElementById('addUserModal')).show();
+                            });
+                        </script>
+                    @endif
+
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

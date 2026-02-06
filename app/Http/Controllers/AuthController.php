@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\UtilisateurRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -18,7 +19,7 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    //POST /login :traite le formulaire
+    //POST /login : traite le formulaire
     public function login(Request $request){
 
         //1) Valider les champs
@@ -39,11 +40,9 @@ class AuthController extends Controller
 
         //TODO: mdp doit etre hashé
         //3) Vérifier le mot de passe
-        $mdpDb = $user->mdp;
-        if($password !== $mdpDb){
-            return back()->with('error','Mot de passe incorrect');
+        if (!Hash::check($password, $user->mdp)) {
+            return back()->with('error', 'Mot de passe incorrect');
         }
-
         //4) Mettre en session (comme "user connecté)
         $request->session()->put('user', [
             'idUtilisateur' => $user->idUtilisateur,
