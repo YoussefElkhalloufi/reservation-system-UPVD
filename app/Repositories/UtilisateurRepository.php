@@ -2,9 +2,11 @@
 
 namespace App\Repositories;
 
+use App\Mail\CompteCreeMail;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UtilisateurRepository
 {
@@ -71,10 +73,15 @@ class UtilisateurRepository
                 $hashedPassword,
             ]);
 
+            // Envoyé un email Ssi le compte crée est actif
+            if ($data['statut'] == 'actif'){
+                $data['idUtilisateur'] = $idUser;
+                Mail::to($data['email'])->send(new CompteCreeMail($data));
+            }
+
             return true;
 
         } catch (\Throwable $e) {
-            // TODO:Exemple: duplicate key (email unique / id unique)
             return false;
         }
     }

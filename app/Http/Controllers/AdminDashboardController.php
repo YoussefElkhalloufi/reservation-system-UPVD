@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Repositories\DashboardRepository;
 use App\Repositories\UtilisateurRepository;
+use App\Mail\CompteCreeMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AdminDashboardController extends Controller
 {
@@ -35,12 +37,13 @@ class AdminDashboardController extends Controller
             'nom'          => 'required|string|max:60',
             'prenom'       => 'required|string|max:60',
             'email'        => 'required|email|max:120',
-            'telephone'    => 'nullable|string|max:20',
+            'telephone'    => 'nullable|digits:10',
             'role'         => 'required|in:admin,enseignant,etudiant',
             'statut'       => 'required|in:actif,inactif',
             'password'     => 'required|string|min:8|confirmed',
         ],
-        [ 'password.confirmed' => 'Les mots de passe ne correspondent pas.',]
+        [ 'password.confirmed' => 'Les mots de passe ne correspondent pas.',
+            'telephone.digits' => 'Le numéro de téléphone doit contenir exactement 10 chiffres.',]
         );
 
         // Appel SQL pur via Repository
@@ -51,6 +54,6 @@ class AdminDashboardController extends Controller
                 ->withInput();
         }
 
-        return back()->with('success', "Utilisateur ajouté avec succès.");
+        return back()->with('success', "Utilisateur ".$data['nom'] . " " . $data['prenom']." ajouté avec succès.");
     }
 }

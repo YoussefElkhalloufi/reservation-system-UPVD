@@ -168,17 +168,17 @@
 
                             <div class="row g-3">
                                 <div class="col-md-6">
-                                    <label class="form-label">Nom</label>
+                                    <label class="form-label">Nom *</label>
                                     <input name="nom" class="form-control" required>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label class="form-label">Prénom</label>
+                                    <label class="form-label">Prénom *</label>
                                     <input name="prenom" class="form-control" required>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label class="form-label">Email</label>
+                                    <label class="form-label">Email *</label>
                                     <input name="email" type="email" class="form-control" required>
                                 </div>
 
@@ -188,7 +188,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label class="form-label">Rôle</label>
+                                    <label class="form-label">Rôle *</label>
                                     <select name="role" class="form-select" required>
                                         <option value="etudiant">Étudiant</option>
                                         <option value="enseignant">Enseignant</option>
@@ -197,7 +197,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label class="form-label">Statut</label>
+                                    <label class="form-label">Statut *</label>
                                     <select name="statut" class="form-select" required>
                                         <option value="actif">Actif</option>
                                         <option value="inactif">Inactif</option>
@@ -205,12 +205,12 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label class="form-label">Mot de passe</label>
+                                    <label class="form-label">Mot de passe *</label>
                                     <input name="password" type="password" class="form-control" required minlength="8">
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label class="form-label">Confirmer</label>
+                                    <label class="form-label">Confirmer *</label>
                                     <input name="password_confirmation" type="password" class="form-control" required minlength="8">
                                 </div>
                             </div>
@@ -232,6 +232,13 @@
                             });
                         </script>
                     @endif
+
+                    @if (session('success'))
+                        <script>
+                            alert(@json(session('success')));
+                        </script>
+                    @endif
+
 
                 </div>
             </div>

@@ -42,7 +42,6 @@ Route::middleware('auth.session')->group(function () {
 
     Route::post('/dashboard/admin/utilisateurs', [AdminDashboardController::class, 'store'])
         ->name('admin.utilisateurs.store')->middleware('role:admin');
-    //TODO: middleware
 });
 
 
