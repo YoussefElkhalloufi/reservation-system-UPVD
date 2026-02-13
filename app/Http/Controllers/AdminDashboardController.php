@@ -55,5 +55,30 @@ class AdminDashboardController extends Controller
         }
 
         return back()->with('success', "Utilisateur ".$data['nom'] . " " . $data['prenom']." ajouté avec succès.");
+
+    }
+
+    public function update(Request $request, UtilisateurRepository $repo){
+        $data = $request->validate([
+            'idUtilisateur' => 'required|string',
+            'nom'          => 'required|string|max:60',
+            'prenom'       => 'required|string|max:60',
+            'email'        => 'required|email|max:120',
+            'telephone'    => 'nullable|digits:10',
+            'statut'       => 'required|in:actif,inactif',
+            'password'     => 'nullable|string|min:8|confirmed',
+        ],
+            [ 'password.confirmed' => 'Les mots de passe ne correspondent pas.',
+                'telephone.digits' => 'Le numéro de téléphone doit contenir exactement 10 chiffres.',]
+        );
+        $ok=$repo->updateUtilisateur($data);
+
+        if (!$ok) {
+            return back()->withErrors(['email' => "Impossible de créer l'utilisateur (email déjà utilisé)."])
+                ->withInput();
+        }
+
+        return back()->with('success', "Utilisateur modifié avec succès.");
+
     }
 }

@@ -34,3 +34,17 @@ test("Ajout d'un nouveau utilisateur", function(){
 
     expect($repo->createUtilisateur($data))->toBeTrue();
 });
+
+test("Modifier un utilisateur", function(){
+    $repo = new UtilisateurRepository();
+    $data =[
+        'idUtilisateur' => 'ETU1',
+        'nom'          => 'salmi',
+        'prenom'       => 'said',
+        'email'        => 'saidS@univ-perp.fr',
+        'telephone'    => '0807',
+        'statut'       => 'actif',
+        'password'     => '1234'
+    ];
+    expect($repo->updateUtilisateur($data))->toBeTrue();
+});

@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Mail\CompteCreeMail;
+use App\Mail\MotDePasseChangeMail;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -85,4 +86,37 @@ class UtilisateurRepository
             return false;
         }
     }
+
+    public function updateUtilisateur(array $data): bool
+    {
+
+        try {
+            DB::update("
+          UPDATE utilisateur
+          SET nom=?, prenom=?, adresseMail=?, telephone=?, actif=?
+          WHERE idUtilisateur=?
+        ", [
+                $data['nom'],
+                $data['prenom'],
+                $data['email'],
+                $data['telephone'] ?? null,
+                $data['statut'] == 'actif' ? '1' : '0',
+                $data['idUtilisateur'],
+            ]);
+
+            // mot de passe optionnel
+            if (!empty($data['password'])) {
+                DB::update("UPDATE utilisateur SET mdp=? WHERE idUtilisateur=?", [
+                    Hash::make($data['password']),
+                    $data['idUtilisateur']
+                ]);
+                Mail::to($data['email'])->send(new MotDePasseChangeMail($data));
+            }
+
+            return true;
+        } catch (\Throwable $e) {
+            return false;
+        }
+    }
+
 }

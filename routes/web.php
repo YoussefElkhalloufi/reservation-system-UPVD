@@ -42,6 +42,10 @@ Route::middleware('auth.session')->group(function () {
 
     Route::post('/dashboard/admin/utilisateurs', [AdminDashboardController::class, 'store'])
         ->name('admin.utilisateurs.store')->middleware('role:admin');
+
+    Route::put('/dashboard/admin/utilisateurs', [AdminDashboardController::class, 'update'])
+        ->name('admin.utilisateurs.update')->middleware('role:admin');
+
 });
 
 
