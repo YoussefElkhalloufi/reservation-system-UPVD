@@ -176,12 +176,19 @@
                         document.getElementById('emailValidate').value = d.adresseMail;
                         document.getElementById('emailRefuse').value = d.adresseMail;
                         document.getElementById('idReservation').value = d.idReservation;
+                        document.getElementById('idReservationrefus').value = d.idReservation;
                         document.getElementById('dateDebut').value = d.dateDebut;
+                        document.getElementById('dateDebutrefus').value = d.dateDebut;
                         document.getElementById('dateFin').value = d.dateFin;
+                        document.getElementById('dateFinrefus').value = d.dateFin;
                         document.getElementById('salle').value = d.codeSalle;
+                        document.getElementById('sallerefus').value = d.codeSalle;
                         document.getElementById('motif').value = d.motif;
+                        document.getElementById('motifrefus').value = d.motif;
                         document.getElementById('nomComplet').value = d.nomComplet;
+                        document.getElementById('nomCompletrefus').value = d.nomComplet;
                         document.getElementById('nbMateriels').value = d.nbMateriels;
+                        document.getElementById('nbMaterielsrefus').value = d.nbMateriels;
                     })
                     .catch(error => {
                         console.error(error);
@@ -407,9 +414,17 @@
                         <form id="refuseForm" method="POST">
                             @csrf
                             <input type="hidden" name="emailUtilisateur" id="emailRefuse">
+                            <input type="hidden" name ="idReservationrefus" id="idReservationrefus">
+                            <input type="hidden" name ="dateDebutrefus" id="dateDebutrefus">
+                            <input type="hidden" name ="dateFinrefus" id="dateFinrefus">
+                            <input type="hidden" name ="sallerefus" id="sallerefus">
+                            <input type="hidden" name="nbMaterielsrefus" id="nbMaterielsrefus">
+                            <input type="hidden" name ="motifrefus" id="motifrefus">
+                            <input type="hidden" name="nomCompletrefus" id="nomCompletrefus">
                             <button type="submit" class="btn btn-danger">
                                 Refuser
                             </button>
+                            <input name="motifRefus" id = "motifRefus" class="col-md-8" type="text" placeholder="Motif de refus">
                         </form>
 
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">

@@ -242,7 +242,25 @@ class AdminDashboardController extends Controller
     }
 
     public function refuserReservation($id, ReservationRepository $repo, Request $request){
+        $data = [
+            "email"=>$request->input('emailUtilisateur'),
+            "nomComplet"=>$request->input('nomCompletrefus'),
+            "idReservation"=>$request->input('idReservationrefus'),
+            "dateDebut"=>$request->input('dateDebutrefus'),
+            "dateFin"=>$request->input('dateFinrefus'),
+            "salle"=>$request->input('sallerefus'),
+            "motif"=>$request->input('motifrefus'),
+            "nbMateriels" =>$request->input('nbMaterielsrefus'),
+            "motifRefus" =>$request->input('motifRefus'),
+        ];
+        $idAdmin = session('user')['idUtilisateur'];
 
+        $ok = $repo->refuserReservation($id, $idAdmin, $data);
+        if(!$ok){
+            return back()->withErrors(['Erreur'=> 'Seules les réservations en attente peuvent être refusées']);
+        }
+
+        return back()->with('success', 'Réservation N°: ' . $id.', refusée avec succes');
     }
 
 }

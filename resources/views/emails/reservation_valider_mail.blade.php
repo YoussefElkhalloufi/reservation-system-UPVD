@@ -10,6 +10,7 @@
 <ul>
     <li><strong>N° réservation :</strong> {{ $data['idReservation'] }}</li>
     <li><strong>Salle :</strong> {{ $data['salle'] ?? 'Aucune' }}</li>
+    <li><strong>Nombre de matériels: </strong>{{ $data['nbMateriels'] ?? 0 }}</li>
     <li><strong>Date début :</strong> {{ $data['dateDebut'] }}</li>
     <li><strong>Date fin :</strong> {{ $data['dateFin'] }}</li>
     <li><strong>Motif :</strong> {{ $data['motif'] }}</li>
