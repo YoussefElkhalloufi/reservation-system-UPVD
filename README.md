@@ -63,6 +63,6 @@ Application web développée avec Laravel permettant la gestion des salles, des 
 
 
 ## Auteurs
-Youssef el khalloufi & el hachimi el idrissi salah eddine & dorra mezghenni
+Youssef el khalloufi & hachimi el idrissi salah & dorra mezghenni
 ## Licence
 Projet réalisé dans un cadre académique -- Université de Perpignan Via Domitia
