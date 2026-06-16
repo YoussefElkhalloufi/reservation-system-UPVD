@@ -30,6 +30,6 @@ Application web développée avec Laravel permettant la gestion des salles, des 
 ![gestionMateriels](screenshots/gestionMateriels.png)
 
 ## Auteurs
-TODO ......
+Youssef el khalloufi & el hachimi el idrissi salah eddine
 ## Licence
 Projet réalisé dans un cadre académique -- Université de Perpignan Via Domitia
