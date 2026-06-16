@@ -58,6 +58,8 @@ Application web développée avec Laravel permettant la gestion des salles, des 
 <img width="686" height="308" alt="image" src="https://github.com/user-attachments/assets/d43869ad-f275-4937-9ee5-817783ba007e" />
 
 
+## Rapport du projet
+[Projet tutorÃ© modif.pdf](https://github.com/user-attachments/files/28995733/Projet.tutorA.modif.pdf)
 
 
 ## Auteurs
