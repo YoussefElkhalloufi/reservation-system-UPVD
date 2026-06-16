@@ -28,6 +28,8 @@ Application web développée avec Laravel permettant la gestion des salles, des 
 ![gestionSalles](screenshots/gestionSalles.png)
 ### Gestion des materiels
 ![gestionMateriels](screenshots/gestionMateriels.png)
+### Rapports & Statistiques
+<img width="947" height="431" alt="image" src="https://github.com/user-attachments/assets/083af2fa-cc4c-4afd-a826-5ec79d6a11ac" />
 
 ## Auteurs
 Youssef el khalloufi & el hachimi el idrissi salah eddine
