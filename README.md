@@ -26,11 +26,15 @@ Application web développée avec Laravel permettant la gestion des salles, des 
 ![gestionUtilisateurs](screenshots/gestionUtilisateurs.png)
 ### Création du compte-notification par mail
 <img width="680" height="221" alt="image" src="https://github.com/user-attachments/assets/b5f00000-3dc9-4c34-b7a9-a50cec067f9b" />
+
 ### Gestion des salles - Admin
+
 ![gestionSalles](screenshots/gestionSalles.png)
 ### Gestion des materiels - Admin
+
 ![gestionMateriels](screenshots/gestionMateriels.png)
 ### Gestion des réservations - Admin
+
 <img width="941" height="432" alt="image" src="https://github.com/user-attachments/assets/e0e24734-77b7-4efa-9788-562907ad8c2c" />
 <img width="562" height="434" alt="image" src="https://github.com/user-attachments/assets/73246b32-15a0-4e8f-a007-ba6396849d50" />
 ### Rapports & Statistiques - Admin
